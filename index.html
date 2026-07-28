@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Albahaca | Salud, Sabor y Bienestar</title>
+    <meta name="description" content="Descubre las propiedades, cuidados y usos de la albahaca, una planta aromática que combina salud, sabor y bienestar.">
+
+    <!-- Google Fonts: Playfair Display + Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================================
+               VARIABLES CSS - PALETA MEDITERRÁNEA
+               ============================================================ */
+        :root {
+            --verde-esmeralda: #1B4332;
+            --verde-medio: #2D6A4F;
+            --verde-claro: #40916C;
+            --verde-suave: #52B788;
+            --verde-palido: #D8F3DC;
+            --blanco: #FFFFFF;
+            --crema: #FEFAE0;
+            --crema-oscuro: #F5F0E1;
+            --dorado: #C8963E;
+            --dorado-claro: #D4A574;
+            --dorado-suave: #E8D5B7;
+            --texto-oscuro: #1a1a1a;
+            --texto-medio: #3d3d3d;
+            --texto-claro: #6b6b6b;
+            --sombra-suave: 0 4px 20px rgba(0, 0, 0, 0.06);
+            --sombra-media: 0 8px 40px rgba(0, 0, 0, 0.10);
+            --sombra-dorada: 0 8px 32px rgba(200, 150, 62, 0.20);
+            --borde-redondo: 20px;
+            --borde-redondo-sm: 12px;
+            --transicion: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transicion-lenta: 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --max-width: 1200px;
+            --header-height: 0px;
+        }
+
+        /* ============================================================
+               RESET & BASE
+               ============================================================ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--blanco);
+            color: var(--texto-oscuro);
+            line-height: 1.7;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ============================================================
+               UTILIDADES
+               ============================================================ */
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        .section-padding {
+            padding: 90px 0;
+        }
+
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 60px 0;
+            }
+            .container {
+                padding: 0 20px;
+            }
+        }
+
+        /* ============================================================
+               ANIMACIONES KEYFRAMES
+               ============================================================ */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.92);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes floatLeaf {
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-18px) rotate(3deg);
+            }
+            50% {
+                transform: translateY(-8px) rotate(-2deg);
+            }
+            75% {
+                transform: translateY(-22px) rotate(4deg);
+            }
+        }
+
+        @keyframes gentleSway {
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(4deg);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        @keyframes pulseGlow {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(200, 150, 62, 0.35);
+            }
+            50% {
+                box-shadow: 0 0 0 18px rgba(200, 150, 62, 0);
+            }
+        }
+
+        /* Clases para animaciones con Intersection Observer */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+        .reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+        .reveal-delay-4 {
+            transition-delay: 0.4s;
+        }
+        .reveal-delay-5 {
+            transition-delay: 0.5s;
+        }
+
+        /* ============================================================
+               HERO SECTION
+               ============================================================ */
+        .hero {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #0d1f17;
+        }
+
+        .hero__bg-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 35%;
+            z-index: 1;
+            filter: brightness(0.55) saturate(1.1);
+        }
+
+        .hero__overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background:
+                radial-gradient(ellipse at 30% 50%, rgba(27, 67, 50, 0.35) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 30%, rgba(200, 150, 62, 0.12) 0%, transparent 50%),
+                linear-gradient(180deg, rgba(13, 31, 23, 0.55) 0%, rgba(13, 31, 23, 0.3) 40%, rgba(13, 31, 23, 0.65) 100%);
+            backdrop-filter: blur(1.5px);
+            -webkit-backdrop-filter: blur(1.5px);
+        }
+
+        /* Elementos botánicos decorativos flotantes */
+        .hero__botanical {
+            position: absolute;
+            z-index: 3;
+            pointer-events: none;
+            opacity: 0.55;
+        }
+        .hero__botanical--1 {
+            top: 12%;
+            left: 6%;
+            width: 90px;
+            animation: floatLeaf 7s ease-in-out infinite;
+        }
+        .hero__botanical--2 {
+            top: 18%;
+            right: 8%;
+            width: 75px;
+            animation: floatLeaf 9s ease-in-out 1.5s infinite;
+            opacity: 0.45;
+        }
+        .hero__botanical--3 {
+            bottom: 15%;
+            left: 10%;
+            width: 65px;
+            animation: floatLeaf 8s ease-in-out 3s infinite;
+            opacity: 0.4;
+        }
+        .hero__botanical--4 {
+            bottom: 22%;
+            right: 12%;
+            width: 80px;
+            animation: floatLeaf 10s ease-in-out 0.8s infinite;
+            opacity: 0.5;
+        }
+        .hero__botanical--5 {
+            top: 40%;
+            left: 50%;
+            width: 55px;
+            animation: floatLeaf 8.5s ease-in-out 2s infinite;
+            opacity: 0.35;
+        }
+
+        @media (max-width: 768px) {
+            .hero__botanical--1 {
+                width: 55px;
+                left: 4%;
+                top: 8%;
+            }
+            .hero__botanical--2 {
+                width: 45px;
+                right: 4%;
+                top: 12%;
+            }
+            .hero__botanical--3 {
+                width: 40px;
+                left: 6%;
+                bottom: 10%;
+            }
+            .hero__botanical--4 {
+                width: 50px;
+                right: 6%;
+                bottom: 16%;
+            }
+            .hero__botanical--5 {
+                width: 35px;
+                top: 35%;
+            }
+        }
+
+        .hero__content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 780px;
+            padding: 0 28px;
+        }
+
+        .hero__tag {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--dorado-claro);
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(212, 165, 116, 0.35);
+            padding: 8px 22px;
+            border-radius: 50px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+
+        .hero__title {
+            font-family: 'Playfair Display', 'Times New Roman', serif;
+            font-size: clamp(3.2rem, 7vw, 5.8rem);
+            font-weight: 700;
+            color: var(--blanco);
+            line-height: 1.08;
+            letter-spacing: -0.02em;
+            margin-bottom: 18px;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+            animation: fadeInScale 1s ease forwards;
+        }
+
+        .hero__title-accent {
+            display: inline-block;
+            background: linear-gradient(135deg, #D4A574 0%, #E8C97A 40%, #C8963E 70%, #D4A574 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 4s linear infinite;
+        }
+
+        .hero__subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(1.05rem, 2vw, 1.3rem);
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+            margin-bottom: 38px;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+            letter-spacing: 0.01em;
+            animation: fadeInUp 1s ease 0.25s forwards;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .hero__btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            color: #1B4332;
+            background: linear-gradient(135deg, #E8D5B7 0%, #D4A574 40%, #C8963E 100%);
+            padding: 16px 36px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transicion);
+            box-shadow: var(--sombra-dorada);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease 0.5s forwards;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+        .hero__btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(200, 150, 62, 0.40);
+            background: linear-gradient(135deg, #f0e2cc 0%, #dfb98a 40%, #d4a050 100%);
+        }
+        .hero__btn:active {
+            transform: translateY(0);
+            box-shadow: var(--sombra-dorada);
+        }
+        .hero__btn-icon {
+            width: 18px;
+            height: 18px;
+            transition: transform var(--transicion);
+        }
+        .hero__btn:hover .hero__btn-icon {
+            transform: translateY(3px);
+        }
+
+        /* Scroll indicator */
+        .hero__scroll-indicator {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            animation: fadeInUp 1s ease 0.8s forwards;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+        .hero__scroll-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            animation: pulseGlow 2.5s ease-in-out infinite;
+        }
+        .hero__scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), transparent);
+        }
+
+        /* ============================================================
+               SEPARADOR ORGÁNICO (WAVE CON FORMA DE HOJA)
+               ============================================================ */
+        .section-divider {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            background: transparent;
+            margin-top: -2px;
+        }
+        .section-divider svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .section-divider--light-to-cream svg path {
+            fill: #FEFAE0;
+        }
+        .section-divider--cream-to-white svg path {
+            fill: #FFFFFF;
+        }
+        .section-divider--white-to-cream svg path {
+            fill: #FEFAE0;
+        }
+        .section-divider--cream-to-green svg path {
+            fill: #F5F9F6;
+        }
+
+        /* ============================================================
+               SECCIÓN: PROPIEDADES
+               ============================================================ */
+        .section-propiedades {
+            background-color: var(--crema);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Patrón decorativo de fondo */
+        .section-propiedades::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(64, 145, 108, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at 85% 75%, rgba(200, 150, 62, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(45, 106, 79, 0.03) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .section-propiedades .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section__header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section__label {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--dorado);
+            margin-bottom: 12px;
+        }
+        .section__title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4.5vw, 3rem);
+            font-weight: 700;
+            color: var(--verde-esmeralda);
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+            margin-bottom: 14px;
+        }
+        .section__title-underline {
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--dorado), var(--dorado-claro));
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        .propiedades-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        @media (max-width: 1024px) {
+            .propiedades-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+        @media (max-width: 600px) {
+            .propiedades-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+        }
+
+        .propiedad-card {
+            background: var(--blanco);
+            border-radius: var(--borde-redondo);
+            padding: 32px 26px 28px;
+            text-align: center;
+            box-shadow: var(--sombra-suave);
+            transition: all var(--transicion);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            position: relative;
+            overflow: hidden;
+            cursor: default;
+        }
+        .propiedad-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 70%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--dorado-claro), transparent);
+            border-radius: 2px;
+            transition: transform var(--transicion);
+        }
+        .propiedad-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--sombra-media);
+            border-color: rgba(200, 150, 62, 0.2);
+        }
+        .propiedad-card:hover::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .propiedad-card__icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #D8F3DC 0%, #B7E4C7 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            transition: all var(--transicion);
+        }
+        .propiedad-card:hover .propiedad-card__icon {
+            background: linear-gradient(135deg, #B7E4C7 0%, #95D5B2 100%);
+            transform: scale(1.08);
+            box-shadow: 0 6px 24px rgba(45, 106, 79, 0.18);
+        }
+        .propiedad-card__icon svg {
+            width: 30px;
+            height: 30px;
+            color: var(--verde-esmeralda);
+        }
+        .propiedad-card__title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--verde-esmeralda);
+            margin-bottom: 8px;
+        }
+        .propiedad-card__text {
+            font-size: 0.95rem;
+            color: var(--texto-medio);
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+               SECCIÓN: RIEGO
+               ============================================================ */
+        .section-riego {
+            background-color: var(--blanco);
+            position: relative;
+            overflow: hidden;
+        }
+        .section-riego::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 25% 30%, rgba(216, 243, 220, 0.5) 0%, transparent 55%),
+                radial-gradient(ellipse at 75% 70%, rgba(232, 213, 183, 0.35) 0%, transparent 55%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .section-riego .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .riego-timeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+            position: relative;
+        }
+        @media (max-width: 1024px) {
+            .riego-timeline {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+        @media (max-width: 600px) {
+            .riego-timeline {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+
+        /* Línea conectora en desktop */
+        .riego-timeline::before {
+            content: '';
+            position: absolute;
+            top: 44px;
+            left: 8%;
+            right: 8%;
+            height: 2px;
+            background: linear-gradient(90deg,
+                    transparent,
+                    var(--dorado-suave) 15%,
+                    var(--dorado-claro) 50%,
+                    var(--dorado-suave) 85%,
+                    transparent);
+            border-radius: 2px;
+            z-index: 0;
+            display: block;
+        }
+        @media (max-width: 1024px) {
+            .riego-timeline::before {
+                display: none;
+            }
+        }
+
+        .riego-card {
+            background: var(--blanco);
+            border-radius: var(--borde-redondo);
+            padding: 30px 22px 24px;
+            text-align: center;
+            box-shadow: var(--sombra-suave);
+            transition: all var(--transicion);
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .riego-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--sombra-media);
+            border-color: rgba(64, 145, 108, 0.2);
+        }
+        .riego-card__step {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--verde-esmeralda);
+            color: var(--blanco);
+            font-weight: 700;
+            font-size: 1.1rem;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 3;
+            box-shadow: 0 4px 16px rgba(27, 67, 50, 0.25);
+            transition: all var(--transicion);
+        }
+        .riego-card:hover .riego-card__step {
+            background: var(--dorado);
+            box-shadow: 0 6px 22px rgba(200, 150, 62, 0.35);
+            transform: scale(1.1);
+        }
+        .riego-card__title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--verde-esmeralda);
+            margin-bottom: 8px;
+        }
+        .riego-card__text {
+            font-size: 0.93rem;
+            color: var(--texto-medio);
+            line-height: 1.6;
+        }
+        .riego-card__highlight {
+            display: inline-block;
+            background: #FFF8E7;
+            color: #8B6914;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            border: 1px solid rgba(200, 150, 62, 0.2);
+        }
+
+        /* ============================================================
+               SECCIÓN: USOS PRINCIPALES
+               ============================================================ */
+        .section-usos {
+            background-color: var(--crema);
+            position: relative;
+            overflow: hidden;
+        }
+        .section-usos::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 40%, rgba(45, 106, 79, 0.04) 0%, transparent 60%),
+                radial-gradient(circle at 80% 30%, rgba(200, 150, 62, 0.06) 0%, transparent 55%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .section-usos .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .usos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+        @media (max-width: 1024px) {
+            .usos-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 22px;
+            }
+        }
+        @media (max-width: 650px) {
+            .usos-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        .uso-card {
+            background: var(--blanco);
+            border-radius: var(--borde-redondo);
+            overflow: hidden;
+            box-shadow: var(--sombra-suave);
+            transition: all var(--transicion);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .uso-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--sombra-media);
+            border-color: rgba(200, 150, 62, 0.25);
+        }
+        .uso-card__image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform var(--transicion-lenta);
+        }
+        .uso-card:hover .uso-card__image {
+            transform: scale(1.06);
+        }
+        .uso-card__body {
+            padding: 24px 20px 22px;
+            text-align: center;
+        }
+        .uso-card__icon-mini {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--verde-palido);
+            margin-bottom: 10px;
+        }
+        .uso-card__icon-mini svg {
+            width: 20px;
+            height: 20px;
+            color: var(--verde-medio);
+        }
+        .uso-card__title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--verde-esmeralda);
+            margin-bottom: 8px;
+        }
+        .uso-card__text {
+            font-size: 0.93rem;
+            color: var(--texto-medio);
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+               FOOTER DECORATIVO
+               ============================================================ */
+        .footer-decorativo {
+            background: var(--verde-esmeralda);
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .footer-decorativo::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: var(--verde-esmeralda);
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+            z-index: 2;
+        }
+        .footer-decorativo .container {
+            position: relative;
+            z-index: 3;
+        }
+        .footer-decorativo__text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--dorado-suave);
+            margin-bottom: 6px;
+        }
+        .footer-decorativo__sub {
+            font-size: 0.85rem;
+            letter-spacing: 0.04em;
+            color: rgba(255, 255, 255, 0.55);
+        }
+        /* Hojas decorativas en footer */
+        .footer-leaf {
+            position: absolute;
+            z-index: 1;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+        .footer-leaf--1 {
+            bottom: 10px;
+            left: 5%;
+            width: 70px;
+            animation: gentleSway 6s ease-in-out infinite;
+        }
+        .footer-leaf--2 {
+            bottom: 20px;
+            right: 5%;
+            width: 60px;
+            animation: gentleSway 7s ease-in-out 2s infinite;
+        }
+
+        /* ============================================================
+               BOTÓN FLOTANTE BACK TO TOP
+               ============================================================ */
+        .back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 28px;
+            z-index: 999;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--verde-esmeralda);
+            color: var(--blanco);
+            border: 2px solid var(--dorado-claro);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 24px rgba(27, 67, 50, 0.3);
+            transition: all var(--transicion);
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
+        .back-to-top.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .back-to-top:hover {
+            background: var(--dorado);
+            border-color: var(--dorado);
+            box-shadow: 0 8px 30px rgba(200, 150, 62, 0.4);
+            transform: translateY(-4px);
+        }
+        .back-to-top svg {
+            width: 20px;
+            height: 20px;
+            transition: transform var(--transicion);
+        }
+        .back-to-top:hover svg {
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 600px) {
+            .back-to-top {
+                bottom: 20px;
+                right: 16px;
+                width: 42px;
+                height: 42px;
+            }
+        }
+
+        /* ============================================================
+               DECORACIONES BOTÁNICAS ENTRE SECCIONES
+               ============================================================ */
+        .decorative-leaves {
+            position: absolute;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.5;
+        }
+        .decorative-leaves--left {
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100px;
+        }
+        .decorative-leaves--right {
+            right: -15px;
+            top: 30%;
+            width: 85px;
+        }
+        @media (max-width: 768px) {
+            .decorative-leaves--left,
+            .decorative-leaves--right {
+                width: 50px;
+                opacity: 0.35;
+            }
+        }
+
+        /* ============================================================
+               RESPONSIVE FINE-TUNING
+               ============================================================ */
+        @media (max-width: 480px) {
+            .hero__title {
+                font-size: 2.4rem;
+            }
+            .hero__subtitle {
+                font-size: 0.95rem;
+            }
+            .hero__btn {
+                padding: 14px 28px;
+                font-size: 0.9rem;
+            }
+            .propiedad-card {
+                padding: 24px 18px 20px;
+            }
+            .propiedad-card__icon {
+                width: 52px;
+                height: 52px;
+            }
+            .propiedad-card__icon svg {
+                width: 24px;
+                height: 24px;
+            }
+            .riego-card {
+                padding: 22px 16px 20px;
+            }
+            .uso-card__image {
+                height: 170px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HERO SECTION
+    ============================================================ -->
+    <section class="hero" id="hero">
+        <!-- Imagen de fondo de alta calidad: planta de albahaca fresca -->
+        <img
+        class="hero__bg-image"
+        src="https://images.unsplash.com/photo-1618375531914-867984b5f1c4?auto=format&fit=crop&w=1920&q=80"
+        alt="Planta de albahaca fresca en primer plano"
+        loading="eager"
+        fetchpriority="high"
+        >
+
+        <!-- Overlay con desenfoque -->
+        <div class="hero__overlay" aria-hidden="true"></div>
+
+        <!-- Elementos botánicos decorativos (SVG de hojas) -->
+        <div class="hero__botanical hero__botanical--1" aria-hidden="true">
+            <svg viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M40 95C40 95 5 65 8 35C11 10 35 2 40 15C45 2 69 10 72 35C75 65 40 95 40 95Z" fill="rgba(130,180,140,0.5)" stroke="rgba(150,200,155,0.6)" stroke-width="1.5"/>
+                <line x1="40" y1="95" x2="40" y2="15" stroke="rgba(100,160,110,0.5)" stroke-width="1.2"/>
+            </svg>
+        </div>
+        <div class="hero__botanical hero__botanical--2" aria-hidden="true">
+            <svg viewBox="0 0 70 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M35 85C35 85 3 58 6 30C9 8 30 0 35 12C40 0 61 8 64 30C67 58 35 85 35 85Z" fill="rgba(160,200,150,0.4)" stroke="rgba(170,210,160,0.5)" stroke-width="1.2"/>
+                <line x1="35" y1="85" x2="35" y2="12" stroke="rgba(120,170,130,0.4)" stroke-width="1"/>
+            </svg>
+        </div>
+        <div class="hero__botanical hero__botanical--3" aria-hidden="true">
+            <svg viewBox="0 0 65 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M32 80C32 80 4 56 7 32C10 12 28 5 32 16C36 5 54 12 57 32C60 56 32 80 32 80Z" fill="rgba(140,190,150,0.45)" stroke="rgba(155,200,160,0.55)" stroke-width="1.3"/>
+                <line x1="32" y1="80" x2="32" y2="16" stroke="rgba(110,165,120,0.45)" stroke-width="1"/>
+            </svg>
+        </div>
+        <div class="hero__botanical hero__botanical--4" aria-hidden="true">
+            <svg viewBox="0 0 75 95" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M37 90C37 90 6 62 9 34C12 10 33 3 37 18C41 3 62 10 65 34C68 62 37 90 37 90Z" fill="rgba(150,195,145,0.4)" stroke="rgba(160,205,155,0.5)" stroke-width="1.4"/>
+                <line x1="37" y1="90" x2="37" y2="18" stroke="rgba(115,170,125,0.45)" stroke-width="1.1"/>
+            </svg>
+        </div>
+        <div class="hero__botanical hero__botanical--5" aria-hidden="true">
+            <svg viewBox="0 0 55 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M27 70C27 70 3 48 5 26C7 8 22 3 27 13C32 3 47 8 49 26C51 48 27 70 27 70Z" fill="rgba(135,185,148,0.38)" stroke="rgba(148,195,155,0.48)" stroke-width="1.1"/>
+                <line x1="27" y1="70" x2="27" y2="13" stroke="rgba(108,162,118,0.4)" stroke-width="0.9"/>
+            </svg>
+        </div>
+
+        <!-- Contenido del hero -->
+        <div class="hero__content">
+            <span class="hero__tag">🌿 Mediterráneo &amp; Gourmet</span>
+            <h1 class="hero__title">
+                <span class="hero__title-accent">Albahaca</span>
+            </h1>
+            <p class="hero__subtitle">
+                Una planta aromática que combina salud, sabor y bienestar en un solo lugar.
+            </p>
+            <button class="hero__btn" onclick="document.getElementById('propiedades').scrollIntoView({behavior:'smooth'})">
+                Explorar la información
+                <svg class="hero__btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Indicador de scroll -->
+        <div class="hero__scroll-indicator" aria-hidden="true">
+            <div class="hero__scroll-dot"></div>
+            <div class="hero__scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SEPARADOR ORGÁNICO - Onda con curva de hoja
+    ============================================================ -->
+    <div class="section-divider section-divider--light-to-cream" aria-hidden="true">
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,40 C180,90 360,10 540,45 C720,80 900,5 1080,50 C1260,95 1380,35 1440,20 L1440,100 L0,100 Z" fill="#FEFAE0"/>
+        </svg>
+    </div>
+
+    <!-- ============================================================
+    SECCIÓN: PROPIEDADES DE LA ALBAHACA
+    ============================================================ -->
+    <section class="section-propiedades section-padding" id="propiedades">
+        <div class="container">
+            <div class="section__header reveal">
+                <span class="section__label">✨ Beneficios naturales</span>
+                <h2 class="section__title">Propiedades de la albahaca</h2>
+                <span class="section__title-underline"></span>
+            </div>
+
+            <div class="propiedades-grid">
+                <!-- Tarjeta 1: Digestiva -->
+                <div class="propiedad-card reveal reveal-delay-1">
+                    <div class="propiedad-card__icon">
+                        <!-- Icono digestivo -->
+                        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M10 14 C10 14 13 10 16 10 C19 10 22 14 22 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+                            <circle cx="12" cy="19" r="2" fill="currentColor"/>
+                            <circle cx="20" cy="19" r="2" fill="currentColor"/>
+                            <path d="M13 24 C14 26 18 26 19 24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+                        </svg>
+                    </div>
+                    <h3 class="propiedad-card__title">Digestiva</h3>
+                    <p class="propiedad-card__text">Ayuda a hacer la digestión, reduce los gases y alivia los espasmos del estómago.</p>
+                </div>
+
+                <!-- Tarjeta 2: Antioxidante -->
+                <div class="propiedad-card reveal reveal-delay-2">
+                    <div class="propiedad-card__icon">
+                        <!-- Icono antioxidante / escudo -->
+                        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 2 L28 8 L28 18 C28 25 22 30 16 32 C10 30 4 25 4 18 L4 8 Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M11 16 L15 20 L21 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </div>
+                    <h3 class="propiedad-card__title">Antioxidante</h3>
+                    <p class="propiedad-card__text">Sus componentes frenan el daño celular y retrasan el envejecimiento.</p>
+                </div>
+
+                <!-- Tarjeta 3: Relajante -->
+                <div class="propiedad-card reveal reveal-delay-3">
+                    <div class="propiedad-card__icon">
+                        <!-- Icono relajante / hoja calmante -->
+                        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 16 C6 8 14 2 16 2 C18 2 26 8 26 16 C26 24 21 28 16 28 C11 28 6 24 6 16 Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M16 10 L16 22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M11 16 L21 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="propiedad-card__title">Relajante</h3>
+                    <p class="propiedad-card__text">Calma los nervios leves, el estrés y la ansiedad.</p>
+                </div>
+
+                <!-- Tarjeta 4: Antibacteriana -->
+                <div class="propiedad-card reveal reveal-delay-4">
+                    <div class="propiedad-card__icon">
+                        <!-- Icono antibacteriano / protección -->
+                        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <circle cx="16" cy="16" r="8" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <circle cx="16" cy="16" r="2.5" fill="currentColor"/>
+                            <line x1="16" y1="2" x2="16" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="16" y1="24" x2="16" y2="30" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="2" y1="16" x2="8" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="24" y1="16" x2="30" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="propiedad-card__title">Antibacteriana</h3>
+                    <p class="propiedad-card__text">Ayuda a combatir microbios y protege el sistema inmune.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hoja decorativa -->
+        <div class="decorative-leaves decorative-leaves--right" aria-hidden="true">
+            <svg viewBox="0 0 100 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 120C50 120 10 85 14 50C18 22 42 14 50 28C58 14 82 22 86 50C90 85 50 120 50 120Z" fill="rgba(100,170,120,0.2)" stroke="rgba(120,180,135,0.3)" stroke-width="2"/>
+                <line x1="50" y1="120" x2="50" y2="28" stroke="rgba(90,150,110,0.25)" stroke-width="1.5"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SEPARADOR ORGÁNICO
+    ============================================================ -->
+    <div class="section-divider section-divider--cream-to-white" aria-hidden="true">
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,25 C200,70 400,5 600,40 C800,75 1000,10 1200,45 C1350,70 1440,30 1440,15 L1440,100 L0,100 Z" fill="#FFFFFF"/>
+        </svg>
+    </div>
+
+    <!-- ============================================================
+    SECCIÓN: RIEGO DE LA ALBAHACA
+    ============================================================ -->
+    <section class="section-riego section-padding" id="riego">
+        <div class="container">
+            <div class="section__header reveal">
+                <span class="section__label">💧 Cuidados esenciales</span>
+                <h2 class="section__title">Riego de la albahaca</h2>
+                <span class="section__title-underline"></span>
+            </div>
+
+            <div class="riego-timeline">
+                <!-- Paso 1 -->
+                <div class="riego-card reveal reveal-delay-1">
+                    <div class="riego-card__step">1</div>
+                    <h3 class="riego-card__title">Frecuencia</h3>
+                    <p class="riego-card__text">Riega seguido, pero deja que la capa de arriba de la tierra se seque un poco antes de volver a echar agua.</p>
+                </div>
+
+                <!-- Paso 2 -->
+                <div class="riego-card reveal reveal-delay-2">
+                    <div class="riego-card__step">2</div>
+                    <h3 class="riego-card__title">En verano</h3>
+                    <p class="riego-card__text">Pide agua casi todos los días (o un poco dos veces al día si hace mucho calor), siempre con buen drenaje en la maceta.</p>
+                    <span class="riego-card__highlight">☀️ Máxima hidratación</span>
+                </div>
+
+                <!-- Paso 3 -->
+                <div class="riego-card reveal reveal-delay-3">
+                    <div class="riego-card__step">3</div>
+                    <h3 class="riego-card__title">En invierno</h3>
+                    <p class="riego-card__text">Baja la cantidad de riego a dos o tres veces por semana.</p>
+                    <span class="riego-card__highlight">❄️ Riego moderado</span>
+                </div>
+
+                <!-- Paso 4 -->
+                <div class="riego-card reveal reveal-delay-4">
+                    <div class="riego-card__step">4</div>
+                    <h3 class="riego-card__title">Consejo</h3>
+                    <p class="riego-card__text">Trata de mojar solo la tierra y no las hojas para evitar hongos.</p>
+                    <span class="riego-card__highlight">🛡️ Prevención natural</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hoja decorativa izquierda -->
+        <div class="decorative-leaves decorative-leaves--left" aria-hidden="true">
+            <svg viewBox="0 0 100 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 120C50 120 10 85 14 50C18 22 42 14 50 28C58 14 82 22 86 50C90 85 50 120 50 120Z" fill="rgba(100,170,120,0.18)" stroke="rgba(120,180,135,0.28)" stroke-width="2"/>
+                <line x1="50" y1="120" x2="50" y2="28" stroke="rgba(90,150,110,0.22)" stroke-width="1.5"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SEPARADOR ORGÁNICO
+    ============================================================ -->
+    <div class="section-divider section-divider--white-to-cream" aria-hidden="true">
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,30 C160,5 320,75 480,35 C640,-5 800,65 960,30 C1120,-5 1280,70 1440,25 L1440,100 L0,100 Z" fill="#FEFAE0"/>
+        </svg>
+    </div>
+
+    <!-- ============================================================
+    SECCIÓN: USOS PRINCIPALES
+    ============================================================ -->
+    <section class="section-usos section-padding" id="usos">
+        <div class="container">
+            <div class="section__header reveal">
+                <span class="section__label">🍽️ Aplicaciones versátiles</span>
+                <h2 class="section__title">Usos principales</h2>
+                <span class="section__title-underline"></span>
+            </div>
+
+            <div class="usos-grid">
+                <!-- Uso 1: En la cocina -->
+                <div class="uso-card reveal reveal-delay-1">
+                    <img
+                    class="uso-card__image"
+                    src="https://images.unsplash.com/photo-1601055283742-8b27e81b02ea?auto=format&fit=crop&w=600&q=80"
+                    alt="Pesto fresco de albahaca en un mortero"
+                    loading="lazy"
+                    >
+                    <div class="uso-card__body">
+                        <div class="uso-card__icon-mini">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z"></path>
+                                <line x1="6" y1="17" x2="18" y2="17"></line>
+                            </svg>
+                        </div>
+                        <h3 class="uso-card__title">En la cocina</h3>
+                        <p class="uso-card__text">Ideal para preparar salsas como el pesto, sopas, ensaladas y para dar sabor a carnes o pastas.</p>
+                    </div>
+                </div>
+
+                <!-- Uso 2: En infusiones -->
+                <div class="uso-card reveal reveal-delay-2">
+                    <img
+                    class="uso-card__image"
+                    src="https://images.unsplash.com/photo-1546377153-96f4874c7e3f?auto=format&fit=crop&w=600&q=80"
+                    alt="Infusión de albahaca en taza de cerámica"
+                    loading="lazy"
+                    >
+                    <div class="uso-card__body">
+                        <div class="uso-card__icon-mini">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
+                                <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
+                                <line x1="6" y1="1" x2="6" y2="4"></line>
+                                <line x1="10" y1="1" x2="10" y2="4"></line>
+                                <line x1="14" y1="1" x2="14" y2="4"></line>
+                            </svg>
+                        </div>
+                        <h3 class="uso-card__title">En infusiones</h3>
+                        <p class="uso-card__text">Se usa seca o fresca en té para calmar dolores de estómago o bajar la ansiedad.</p>
+                    </div>
+                </div>
+
+                <!-- Uso 3: Repelente natural -->
+                <div class="uso-card reveal reveal-delay-3">
+                    <img
+                    class="uso-card__image"
+                    src="https://images.unsplash.com/photo-1618375531914-867984b5f1c4?auto=format&fit=crop&w=600&q=80"
+                    alt="Maceta de albahaca en ventana soleada"
+                    loading="lazy"
+                    >
+                    <div class="uso-card__body">
+                        <div class="uso-card__icon-mini">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="3" x2="9" y2="21"></line>
+                            </svg>
+                        </div>
+                        <h3 class="uso-card__title">Repelente natural</h3>
+                        <p class="uso-card__text">Funciona muy bien para alejar mosquitos y otros insectos si la pones en ventanas o balcones.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SEPARADOR FINAL HACIA FOOTER
+    ============================================================ -->
+    <div class="section-divider section-divider--cream-to-green" aria-hidden="true">
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,15 C200,55 400,8 600,38 C800,68 1000,5 1200,35 C1350,60 1440,20 1440,10 L1440,100 L0,100 Z" fill="#1B4332"/>
+        </svg>
+    </div>
+
+    <!-- ============================================================
+    FOOTER DECORATIVO
+    ============================================================ -->
+    <footer class="footer-decorativo" id="footer">
+        <!-- Hojas decorativas -->
+        <div class="footer-leaf footer-leaf--1" aria-hidden="true">
+            <svg viewBox="0 0 70 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M35 85C35 85 5 60 8 35C11 12 30 5 35 18C40 5 59 12 62 35C65 60 35 85 35 85Z" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+                <line x1="35" y1="85" x2="35" y2="18" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+            </svg>
+        </div>
+        <div class="footer-leaf footer-leaf--2" aria-hidden="true">
+            <svg viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30 75C30 75 4 52 7 30C10 10 25 4 30 16C35 4 50 10 53 30C56 52 30 75 30 75Z" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.35)" stroke-width="1.3"/>
+                <line x1="30" y1="75" x2="30" y2="16" stroke="rgba(255,255,255,0.28)" stroke-width="0.9"/>
+            </svg>
+        </div>
+
+        <div class="container">
+            <p class="footer-decorativo__text">🌿 Albahaca · Naturaleza, sabor y bienestar en cada hoja</p>
+            <p class="footer-decorativo__sub">© 2026 · Inspirado en jardines mediterráneos y la cocina italiana</p>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    BOTÓN FLOTANTE: VOLVER AL INICIO
+    ============================================================ -->
+    <button class="back-to-top" id="backToTop" aria-label="Volver al inicio" title="Volver al inicio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ---------- INTERSECTION OBSERVER para animaciones al hacer scroll ----------
+            const revealElements = document.querySelectorAll('.reveal');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -60px 0px',
+                threshold: 0.12,
+            };
+
+            const revealCallback = (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(revealCallback, observerOptions);
+            revealElements.forEach((el) => observer.observe(el));
+
+            // ---------- BOTÓN BACK TO TOP ----------
+            const backToTopBtn = document.getElementById('backToTop');
+            const heroSection = document.getElementById('hero');
+
+            const handleScroll = () => {
+                const scrollY = window.scrollY || window.pageYOffset;
+                const heroHeight = heroSection.offsetHeight;
+
+                if (scrollY > heroHeight * 0.5) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            };
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth',
+                });
+            });
+
+            // Usar throttle simple para el evento scroll
+            let ticking = false;
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        handleScroll();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+
+            // Ejecutar al cargar para estado inicial
+            handleScroll();
+
+            // ---------- SCROLL SUAVE PARA ENLACES INTERNOS (por si se añaden más) ----------
+            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        e.preventDefault();
+                        targetEl.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            console.log('🌿 Albahaca · Landing page lista · Diseño premium mediterráneo');
+        })();
+    </script>
+</body>
+</html>
